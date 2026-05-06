@@ -1,5 +1,5 @@
-//Grupo: Júlia S. de Melo (2026)
-//Código para o trabaho de sistemas distribuidos (eleicao em anel)
+//Grupo: Júlia Melo e Edurdo Dieter (2026)
+//Código para o trabalho de sistemas distribuidos (eleicao em anel)
 
 package main
 
