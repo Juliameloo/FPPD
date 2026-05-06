@@ -45,7 +45,7 @@ func ElectionControler(in chan int) {
 	temp.corpo[0] = 1 // Candidato atual
 	temp.corpo[1] = 1 // Quem iniciou a eleição
 	chans[0] <- temp
-	fmt.Println("Controle: iniciar eleição pelo processo 1")
+	fmt.Printf("Controle: iniciar eleição pelo processo 1\n")
 
 	time.Sleep(time.Second) //esperar eleição acabar (Líder sera o 3)
 
@@ -60,7 +60,7 @@ func ElectionControler(in chan int) {
 	temp.corpo[0] = 1
 	temp.corpo[1] = 1
 	chans[0] <- temp
-	fmt.Println("Controle: iniciar eleição pelo processo 2")
+	fmt.Printf("Controle: iniciar eleição pelo processo 2\n")
 
 	time.Sleep(time.Second) //Líder sera 2
 
@@ -69,7 +69,7 @@ func ElectionControler(in chan int) {
 	for i := 0; i < 4; i++ {
 		chans[i] <- temp
 	}
-	fmt.Println("\n Processo controlador concluído")
+	fmt.Print("\n Processo controlador concluído\n")
 }
 
 func ElectionStage(TaskId int, in chan mensagem, out chan mensagem, leader int) {
