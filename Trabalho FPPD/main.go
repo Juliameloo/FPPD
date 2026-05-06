@@ -1,5 +1,6 @@
 //Grupo: Júlia Melo e Edurdo Dieter (2026)
 //Código para o trabalho de sistemas distribuidos (eleicao em anel)
+//https://docs.google.com/document/d/1D3wlxmbGS4vFgu1ISp0O1EsIzpJPPTbxCvT9rNPMnrk/edit?usp=sharing
 
 package main
 
