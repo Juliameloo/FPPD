@@ -57,8 +57,8 @@ func ElectionControler(in chan int) {
 
 	// Processo 2 inicia eleição
 	temp.tipo = 1
-	temp.corpo[0] = 1
-	temp.corpo[1] = 1
+	temp.corpo[0] = 2
+	temp.corpo[1] = 2
 	chans[0] <- temp
 	fmt.Printf("Controle: iniciar eleição pelo processo 2\n")
 
