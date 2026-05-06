@@ -11,7 +11,7 @@ import (
 )
 
 type mensagem struct {
-	tipo  int    // Tipo da mensagem para fazer o controle do que fazer
+	tipo  int    // Tipo da mensagem para fazer o controle do que fazer [1= ELEICAO,2= FALHA ,4= ENCERRA, 5= NOVO LIDER]
 	corpo [6]int // Conteudo da mensagem para colocar os ids
 				// Onde [0] = tipo
 				//		[1] = candidato
