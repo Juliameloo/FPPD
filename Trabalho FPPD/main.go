@@ -13,6 +13,10 @@ import (
 type mensagem struct {
 	tipo  int    // Tipo da mensagem para fazer o controle do que fazer
 	corpo [6]int // Conteudo da mensagem para colocar os ids
+				// Onde [0] = tipo
+				//		[1] = candidato
+				//		[2] = Iniciador
+				//		+ Espaco Extra
 }
 
 var (
