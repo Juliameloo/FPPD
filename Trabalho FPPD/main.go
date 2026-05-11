@@ -1,6 +1,5 @@
-//Grupo: Júlia Melo e Edurdo Dieter (2026)
-//Código para o trabalho de sistemas distribuidos (eleicao em anel)
-//https://docs.google.com/document/d/1D3wlxmbGS4vFgu1ISp0O1EsIzpJPPTbxCvT9rNPMnrk/edit?usp=sharing
+//Grupo: Júlia Melo e Eduardo Dieter (2026)
+//Código para o trabalho de sistemas distribuidos (eleiçao em anel)
 
 package main
 
@@ -11,17 +10,13 @@ import (
 )
 
 type mensagem struct {
-	tipo  int    // Tipo da mensagem para fazer o controle do que fazer [1= ELEICAO,2= FALHA ,4= ENCERRA, 5= NOVO LIDER]
+	tipo  int    // Tipo da mensagem para fazer o controle do que fazer
 	corpo [6]int // Conteudo da mensagem para colocar os ids
-				// Onde [0] = tipo
-				//		[1] = candidato
-				//		[2] = Iniciador
-				//		+ Espaco Extra
 }
 
 var (
 	chans = []chan mensagem{ // vetor de canias para formar o anel de eleicao
-		make(chan mensagem, 10), //Canal com buffer (com tamanho 10)
+		make(chan mensagem, 10), //Canal com buffer (com tamanho 10) para eviatr deadlock
 		make(chan mensagem, 10),
 		make(chan mensagem, 10),
 		make(chan mensagem, 10),
@@ -45,7 +40,7 @@ func ElectionControler(in chan int) {
 	temp.corpo[0] = 1 // Candidato atual
 	temp.corpo[1] = 1 // Quem iniciou a eleição
 	chans[0] <- temp
-	fmt.Printf("Controle: iniciar eleição pelo processo 1\n")
+	fmt.Println("Controle: iniciar eleição pelo processo 1")
 
 	time.Sleep(time.Second) //esperar eleição acabar (Líder sera o 3)
 
@@ -57,11 +52,10 @@ func ElectionControler(in chan int) {
 
 	// Processo 2 inicia eleição
 	temp.tipo = 1
-	temp.corpo[0] = 2
-	temp.corpo[1] = 2
-	chans[0] <- temp
-	fmt.Printf("Controle: iniciar eleição pelo processo 2\n")
-
+	temp.corpo[0] = 2 // Candidato atual é o 2
+	temp.corpo[1] = 2 // Iniciador é o 2
+	chans[1] <- temp
+	fmt.Println("Controle: iniciar eleição pelo processo 2")
 	time.Sleep(time.Second) //Líder sera 2
 
 	// ENCERRAR Eleição
@@ -69,7 +63,7 @@ func ElectionControler(in chan int) {
 	for i := 0; i < 4; i++ {
 		chans[i] <- temp
 	}
-	fmt.Print("\n Processo controlador concluído\n")
+	fmt.Println("\n Processo controlador concluído")
 }
 
 func ElectionStage(TaskId int, in chan mensagem, out chan mensagem, leader int) {
